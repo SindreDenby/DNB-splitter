@@ -4,6 +4,7 @@ from tkinter import filedialog, ttk
 import user_data
 import xlsx_splitter
 import tooltip
+import config
 
 @dataclass
 class hub_UI:
@@ -57,6 +58,12 @@ class hub_UI:
             tooltip.create(btns[len(btns) - 1], procedure.desc)
             curRow += 1
 
+        ttk.Button(mainFrame,
+            text="Velg salgs typer",
+            command=config.main,
+            width=30,
+            # bg="#4287f5"
+        ).grid(row=100, column=0, columnspan=2)
 
         root.mainloop()
 

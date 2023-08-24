@@ -11,7 +11,7 @@ def data_setup():
         with open(appdata_dir + 'types.json', "w+") as f:
             f.write('{"non_managed: []"}')
 
-def read_data():
+def read_data() -> dict:
     with open(appdata_dir + 'types.json', 'r') as f:
         return json.load(f)
     
