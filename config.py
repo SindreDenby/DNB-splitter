@@ -2,6 +2,7 @@ import json
 import tkinter as tk
 import os
 import user_data
+from tkinter.simpledialog import askstring
 
 def insert_into_listbox(listbox: tk.Listbox, list):
     listbox.delete(0, tk.END)
@@ -35,24 +36,51 @@ class config_ui:
         
         root.title("DNB Financial Analysis System Configuration Tool")
 
-        mainFrame = tk.Frame(root, padx=30, pady=30)
-        mainFrame.grid()
+        self.mainFrame = tk.Frame(root, padx=30, pady=30)
+        self.mainFrame.grid()
+
+        newTypeBtn = tk.Button(self.mainFrame,
+            command=self.add_type,
+            text="+",
+            width=8
+        )
+        newTypeBtn.grid(column=0, row=0, sticky='w')
+        
+        self.listTitles = []
+        self.listBoxes = []
+        self.listMoveBtns = []
+        self.build_listboxes()
+
+        root.mainloop()
+
+    def move_stores(self):
+        pass
+
+    def add_type(self):
+        inp = askstring("New type", "Insert new name:")
+
+    def build_listboxes(self):
+        for col in zip(self.listTitles, self.listBoxes, self.listMoveBtns):
+            for item in col:
+                item.destroy()
 
         curCol = 0
-
-        self.listBoxes = []
         for store_type in self.store_types:
-            tk.Label(mainFrame,
+            self.listTitles.append(tk.Label(self.mainFrame,
                 text= store_type
-            ).grid(row=1, column=curCol)
+            ).grid(row=1, column=curCol))
 
-            self.listBoxes.append(create_listBox(mainFrame, 2, curCol))
+            self.listBoxes.append(create_listBox(self.mainFrame, 2, curCol))
 
-            tk.Button(mainFrame, 
+            self.listMoveBtns.append(tk.Button(self.mainFrame, 
                 # command=
                 text="Flytt hit"
-            ).grid(row=3, column=curCol)
-        root.mainloop()
+            ).grid(row=3, column=curCol))
+
+            insert_into_listbox(self.listBoxes[-1], self.store_types[store_type])
+
+            curCol +=1
+
 
 
 def main():
