@@ -5,6 +5,7 @@ import user_data
 import xlsx_splitter
 import tooltip
 import config
+import dnb_icon
 
 @dataclass
 class hub_UI:
@@ -15,12 +16,15 @@ class hub_UI:
         root = tk.Tk()
         
         root.title("DNB Financial Analysis System")
+        # dnb_icon.set_base64_icon(dnb_icon.icon ,root)
         mainFrame = tk.Frame(root, padx=30, pady=30)
         mainFrame.grid()
 
         setFileFrame = tk.Frame(mainFrame)
         setFileFrame.grid(row=0, column=0, columnspan= 2)
         setFileFrame.grid()
+
+        
 
         ttk.Label(setFileFrame, text=".xlsx fil:").grid(row=0, column=0)
 
