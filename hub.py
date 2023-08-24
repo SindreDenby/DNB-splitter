@@ -24,7 +24,6 @@ class hub_UI:
         setFileFrame.grid(row=0, column=0, columnspan= 2)
         setFileFrame.grid()
 
-        
 
         ttk.Label(setFileFrame, text=".xlsx fil:").grid(row=0, column=0)
 
