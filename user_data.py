@@ -9,7 +9,7 @@ def data_setup():
 
     if 'types.json' not in os.listdir(appdata_dir):
         with open(appdata_dir + 'types.json', "w+") as f:
-            f.write('{"non_managed: []"}')
+            f.write('{"non_managed": []}')
 
 def read_data() -> dict:
     with open(appdata_dir + 'types.json', 'r') as f:
