@@ -22,9 +22,6 @@ def read_data() -> dict:
         return sorted_dict
     
 def new_type(typeName):
-    """
-    WIP
-    """
     data = read_data()
 
     if typeName in data: return

@@ -46,12 +46,16 @@ class config_ui:
         )
         newTypeBtn.grid(column=0, row=0, sticky='w')
         
-        self.listTitles = []
-        self.listBoxes = []
-        self.listMoveBtns = []
+        self.resetLists()
         self.build_listboxes()
 
         self.root.mainloop()
+
+    def resetLists(self):
+        self.listRemoveBtns = []
+        self.listTitles = []
+        self.listBoxes = []
+        self.listMoveBtns = []
 
     def move_stores(self):
         pass
@@ -66,32 +70,37 @@ class config_ui:
         for i, typeName in enumerate(self.store_types):
             insert_into_listbox(self.listBoxes[i], self.store_types[typeName])
 
+    def removeType(self):
+        pass
 
     def build_listboxes(self):
-        for col in zip(self.listTitles, self.listBoxes, self.listMoveBtns):
+        for col in zip(self.listRemoveBtns, self.listTitles, self.listBoxes, self.listMoveBtns):
             for item in col:
                 item.destroy()
 
-        self.listTitles = []
-        self.listBoxes = []
-        self.listMoveBtns = []
+        self.resetLists()
 
         self.store_types = user_data.read_data()
         curCol = 0
         for store_type in self.store_types:
+            self.listRemoveBtns.append(tk.Button(self.mainFrame,
+                text="-",
+                command=self.removeType
+            ))
+
             self.listTitles.append(tk.Label(self.mainFrame,
                 text= store_type
             ))
-            self.listTitles[-1].grid(row=1, column=curCol)
+            self.listTitles[-1].grid(row=2, column=curCol)
 
-            self.listBoxes.append(create_listBox(self.mainFrame, 2, curCol))
+            self.listBoxes.append(create_listBox(self.mainFrame, 3, curCol))
 
             self.listMoveBtns.append(tk.Button(self.mainFrame, 
                 # command=
                 text="Flytt hit"
             ))
 
-            self.listMoveBtns[-1].grid(row=3, column=curCol)
+            self.listMoveBtns[-1].grid(row=4, column=curCol)
 
             curCol +=1
 
